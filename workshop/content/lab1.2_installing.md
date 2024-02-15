@@ -82,7 +82,7 @@ Next we need a local copy of our application code.
 </blockquote>
 
 ```execute
-git clone https://github.com/RedHatGov/service-mesh-workshop-code.git
+git clone https://github.com/oballest/service-mesh-workshop-code.git
 ```
 
 <blockquote>
