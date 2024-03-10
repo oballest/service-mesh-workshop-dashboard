@@ -19,7 +19,5 @@ modules:
     - lab4.4_circuitbreaking
     - lab5.1_intromtls
     - lab5.2_verifymtls
-    - lab5.3_prep
-    - lab5.4_authpolicy
     - lab5.5_secureingressegress
     - fin

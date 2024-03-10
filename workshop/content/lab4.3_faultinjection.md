@@ -49,7 +49,7 @@ If you aren't already (from previous labs) - Send load to the user profile servi
 </blockquote>
 
 ```execute
-while true; do curl -s -o /dev/null $GATEWAY_URL/profile; done
+while true; do curl -k -s -o /dev/null $GATEWAY_URL/profile; done
 ```
 
 <br>
@@ -148,7 +148,7 @@ If you aren't already - Send load to the user profile service:
 </blockquote>
 
 ```execute
-while true; do curl -s -o /dev/null $GATEWAY_URL/profile; done
+while true; do curl -k -s -o /dev/null $GATEWAY_URL/profile; done
 ```
 
 <br>

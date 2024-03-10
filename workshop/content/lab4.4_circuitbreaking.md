@@ -69,7 +69,7 @@ Send load to the user profile service:
 </blockquote>
 
 ```execute
-while true; do curl -s -o /dev/null $GATEWAY_URL/profile; done
+while true; do curl -k -s -o /dev/null $GATEWAY_URL/profile; done
 ```
 
 <blockquote>

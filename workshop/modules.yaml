@@ -32,10 +32,6 @@ modules:
     name: Lab 5.1
   lab5.2_verifymtls:
     name: Lab 5.2
-  lab5.3_prep:
-    name: Lab 5.3
-  lab5.4_authpolicy:
-    name: Lab 5.4
   lab5.5_secureingressegress:
     name: Lab 5.5
   fin:

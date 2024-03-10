@@ -26,32 +26,13 @@ Output:
 
 The annotation appears twice for the userprofile and PostgreSQL services.
 
-<br>
-
-Before deploying the service, you need a reference to the local image you built in the previous lab.
-
 <blockquote>
 <i class="fa fa-terminal"></i>
-Run the following commands:
+Deploy the service using the following command:
 </blockquote>
 
 ```execute
-USER_PROFILE_IMAGE_URI=$(oc get is userprofile --template='{{.status.dockerImageRepository}}')
-echo $USER_PROFILE_IMAGE_URI
-```
-
-Output (sample):
-```
-image-registry.openshift-image-registry.svc:5000/microservices-demo/userprofile
-```
-
-<blockquote>
-<i class="fa fa-terminal"></i>
-Deploy the service using this image URI:
-</blockquote>
-
-```execute
-sed "s|%USER_PROFILE_IMAGE_URI%|$USER_PROFILE_IMAGE_URI|" ./config/app/userprofile-deploy-all.yaml | oc create -f -
+oc create -f ./config/app/userprofile-deploy-all.yaml
 ```
 
 <blockquote>

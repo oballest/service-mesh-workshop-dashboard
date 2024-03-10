@@ -93,15 +93,12 @@ Wait a couple minutes.  You should see the 'app-ui', 'boards', and 'context-scra
 
 ```
 NAME                                    READY   STATUS      RESTARTS   AGE
-app-ui-1-build                          0/1     Completed   0          64m
 app-ui-1-xxxxx                          2/2     Running     0          62m
 app-ui-1-deploy                         0/1     Completed   0          62m
 boards-1-xxxxx                          2/2     Running     0          62m
-boards-1-build                          0/1     Completed   0          64m
 boards-1-deploy                         0/1     Completed   0          62m
 boards-mongodb-1-xxxxx                  2/2     Running     0          64m
 boards-mongodb-1-deploy                 0/1     Completed   0          64m
-context-scraper-1-build                 0/1     Completed   0          64m
 context-scraper-1-xxxxx                 2/2     Running     0          62m
 context-scraper-1-deploy                0/1     Completed   0          62m
 rhsso-operator-xxxxxxxxx-xxxxx          1/1     Running     0          15h
@@ -150,7 +147,7 @@ Retrieve the URL of the load balancer:
 </blockquote>
 
 ```execute
-GATEWAY_URL=$(oc get route istio-ingressgateway -n %username%-istio --template='http://{{.spec.host}}')
+GATEWAY_URL=$(oc get route -l secure=true -n %username%-istio --template='https://{{(index .items 0).spec.host}}')
 echo $GATEWAY_URL
 ```
 

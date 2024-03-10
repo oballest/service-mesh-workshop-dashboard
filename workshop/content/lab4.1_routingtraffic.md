@@ -148,11 +148,11 @@ Let's see what this looks like in Kiali.
 
 <blockquote>
 <i class="fa fa-terminal"></i>
-Send load to the user profile service:
+TODO Send load to the user profile service:
 </blockquote>
 
 ```execute
-for ((i=1;i<=5;i++)); do curl -s -o /dev/null $GATEWAY_URL/profile; done
+for ((i=1;i<=5;i++)); do curl -k -s -o /dev/null $GATEWAY_URL/profile; done
 ```
 
 <br>
@@ -258,7 +258,7 @@ Let's send 100 user profile requests to generate traffic
 </blockquote>
 
 ```execute
-for ((i=1;i<=100;i++)); do curl -s -o /dev/null $GATEWAY_URL/profile; done
+for ((i=1;i<=100;i++)); do curl -k -s -o /dev/null $GATEWAY_URL/profile; done
 ```
 
 <blockquote>

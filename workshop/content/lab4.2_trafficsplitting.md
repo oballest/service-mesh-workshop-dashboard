@@ -6,92 +6,6 @@ It's time to fix the performance issue of the application.  Previously, you depl
 
 The code to fix the performance issue of the user profile service has already been written for you on the 'workshop-feature-fix' branch.  
 
-<blockquote>
-<i class="fa fa-terminal"></i>
-Create a new build on this feature branch:
-</blockquote>
-
-```execute
-oc new-app -f ./config/app/userprofile-build.yaml \
-  -p APPLICATION_NAME=userprofile \
-  -p APPLICATION_CODE_URI=https://github.com/RedHatGov/service-mesh-workshop-code.git \
-  -p APPLICATION_CODE_BRANCH=workshop-feature-fix \
-  -p APP_VERSION_TAG=3.0
-```
-
-<p><i class="fa fa-info-circle"></i> Ignore the failure since the imagestream already exists.</p>
-
-<blockquote>
-<i class="fa fa-terminal"></i>
-Start the build:
-</blockquote>
-
-```execute
-oc start-build userprofile-3.0 -F
-```
-
-The builder will compile the source code and use the base image to create your deployable image artifact.  You should eventually see a successful build.
-
-Output (snippet):
-```
-...
-[INFO] [io.quarkus.deployment.pkg.steps.JarResultBuildStep] Building thin jar: /tmp/src/target/userprofile-1.0-SNAPSHOT-runner.jar
-[INFO] [io.quarkus.deployment.QuarkusAugmentor] Quarkus augmentation completed in 7988ms
-[INFO] ------------------------------------------------------------------------
-[INFO] BUILD SUCCESS
-[INFO] ------------------------------------------------------------------------
-[INFO] Total time:  01:41 min
-[INFO] Finished at: 2020-02-24T19:13:59Z
-[INFO] ------------------------------------------------------------------------...
-```
-
-Once the build is complete, the image is stored in the OpenShift local repository.
-
-<blockquote>
-<i class="fa fa-terminal"></i>
-Verify the image was created:
-</blockquote>
-
-```execute
-oc describe is userprofile
-```
-
-Output (snippet):
-```
-...
-
-3.0
-  no spec tag
-
-  * image-registry.openshift-image-registry.svc:5000/microservices-demo/userprofile@sha256:da74d277cc91c18226fb5cf8ca25d6bdbbf3f77a7480d0583f23023fb0d0d7df
-      12 seconds ago
-
-2.0
-  no spec tag
-
-  * image-registry.openshift-image-registry.svc:5000/microservices-demo/userprofile@sha256:147d836e9f7331a27b26723cbb99f2b667e176b4d5dd356fea947c7ca4fc24a6
-      16 minutes ago
-...
-```
-
-The latest image should have the '3.0' tag.
-
-<blockquote>
-<i class="fa fa-terminal"></i>
-Grab a reference to the local image:
-</blockquote>
-
-```execute
-USER_PROFILE_IMAGE_URI=$(oc get is userprofile --template='{{.status.dockerImageRepository}}')
-echo $USER_PROFILE_IMAGE_URI
-```
-
-Output (sample):
-```
-image-registry.openshift-image-registry.svc:5000/microservices-demo/userprofile
-```
-
-The deployment file 'userprofile-deploy-v3.yaml' was created for you to deploy the application.
 
 <blockquote>
 <i class="fa fa-terminal"></i>
@@ -99,7 +13,7 @@ Deploy the service using the image URI:
 </blockquote>
 
 ```execute
-sed "s|%USER_PROFILE_IMAGE_URI%|$USER_PROFILE_IMAGE_URI|" ./config/app/userprofile-deploy-v3.yaml | oc create -f -
+oc create -f ./config/app/userprofile-deploy-v3.yaml
 ```
 
 <blockquote>
@@ -168,7 +82,7 @@ If you aren't already (from the Grafana lab) - send load continuously to the use
 </blockquote>
 
 ```execute
-while true; do curl -s -o /dev/null $GATEWAY_URL/profile; done
+while true; do curl -k -s -o /dev/null $GATEWAY_URL/profile; done
 ```
 
 <br>
@@ -246,7 +160,7 @@ If you aren't already - send load to the user profile service:
 </blockquote>
 
 ```execute
-while true; do curl -s -o /dev/null $GATEWAY_URL/profile; done
+while true; do curl -k -s -o /dev/null $GATEWAY_URL/profile; done
 ```
 
 <br>
@@ -308,7 +222,7 @@ If you aren't already - Send load to the user profile service:
 </blockquote>
 
 ```execute
-while true; do curl -s -o /dev/null $GATEWAY_URL/profile; done
+while true; do curl -k -s -o /dev/null $GATEWAY_URL/profile; done
 ```
 
 <br>

@@ -34,7 +34,7 @@ Send load to the application user interface:
 </blockquote>
 
 ```execute
-for ((i=1;i<=100;i++)); do curl -s -o /dev/null $GATEWAY_URL; done
+for ((i=1;i<=100;i++)); do curl -k -s -o /dev/null $GATEWAY_URL; done
 ```
 
 <br>
@@ -117,7 +117,7 @@ Send load to the user profile service:
 </blockquote>
 
 ```execute
-for ((i=1;i<=5;i++)); do curl -s -o /dev/null $GATEWAY_URL/profile; done
+for ((i=1;i<=5;i++)); do curl -k -s -o /dev/null $GATEWAY_URL/profile; done
 ```
 
 <p><i class="fa fa-info-circle"></i> Wait for this to complete as the profile service is slow.</p>
