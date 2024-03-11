@@ -12,7 +12,7 @@ Open the Grafana console.  Retrieve the endpoint for Grafana:
 </blockquote>
 
 ```execute
-GATEWAY_URL=$(oc get route -l secure=true -n %username%-istio --template='https://{{(index .items 0).spec.host}}')
+echo $(oc get route grafana -n %username%-istio --template='https://{{.spec.host}}')
 ```
 <p><i class="fa fa-info-circle"></i> Click 'Allow selected permissions' if prompted to authorized access.</p>
 
